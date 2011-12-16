@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="course">
+	<typeAlias alias="courseDTO" type="academy.dto.CourseDTO"/>
+	
+	<insert id="insertCourse" parameterClass="courseDTO">
+		INSERT INTO course(subject_code, 
+							subject_name, 
+							major_name, 
+							professor_name, 
+							subject_detail, 
+							applicant, 
+							capacity, 
+							lecture_time, 
+							credit)
+		VALUES(#subjectCode#,
+				#subjectName#,
+				#majorName#,
+				#professorName#,
+				#subjectDetail#,
+				#applicant#,
+				#capacity#,
+				#lectureTime#,
+				#credit#)
+	</insert>
+	
+	<update id="updateCourse" parameterClass="courseDTO">
+		UPDATE 	course
+		SET		subject_name = #subjectName#, 
+				major_name = #majorName#, 
+				professor_name = #professorName#, 
+				subject_detail = #subjectDetail#, 
+				applicant = #applicant#, 
+				capacity = #capacity#, 
+				lecture_time = #lectureTime#, 
+				credit = #credit#
+		WHERE	subject_code = #subjectCode#
+	</update>
+	
+	<delete id="deleteCourse">
+		DELETE FROM course
+		WHERE		subject_code = #value#
+	</delete>
+
+	<sql id="selectAllFrag">
+		SELECT	subject_code as subjectCode, 
+				subject_name as subjectName, 
+				major_name as majorName, 
+				professor_name as professorName, 
+				subject_detail as subjectDetail, 
+				applicant, 
+				capacity, 
+				lecture_time as lectureTime, 
+				credit
+		FROM	course
+	</sql>
+	
+	<select id="selectCourseCount" resultClass="int">
+		SELECT 	count(subject_code)
+		FROM	course
+	</select>
+	
+	<select id="selectAll" resultClass="courseDTO">
+		<include refid="selectAllFrag"/>
+		ORDER BY subject_code
+	</select>
+	
+	<select id="selectCoursesByPage">
+	SELECT 	subject_code, 
+			subject_name, 
+			major_name, 
+			professor_name, 
+			subject_detail, 
+			applicant, 
+			capacity, 
+			lecture_time, 
+			credit 
+	FROM(SELECT ceil(rownum/#content_per_page#) page, 
+				subject_code, 
+				subject_name, 
+				major_name, 
+				professor_name, 
+				subject_detail, 
+				applicant, capacity, lecture_time, credit 
+			from (select rownum, subject_code, subject_name, major_name, professor_name, subject_detail, applicant, capacity, lecture_time, credit 
+					from course order by subject_code desc)) 
+	where page=#page#
+	</select>
+	<select id="selectBySubjectCode" resultClass="courseDTO">
+		<include refid="selectAllFrag"/>
+		WHERE subject_code = #value#
+	</select>
+	
+	<select id="selectByKeyword" parameterClass="map" resultClass="courseDTO">
+		<include refid="selectAllFrag"/>
+		<dynamic prepend="WHERE">
+			<isNotEmpty property="subject_code">
+				subject_code like '%' || #subject_code# || '%'
+			</isNotEmpty>
+			<isNotEmpty property="subject_name">
+				subject_name like '%' || #subject_name# || '%'
+			</isNotEmpty>
+			<isNotEmpty property="major_name">
+				major_name like '%' || #major_name# || '%'
+			</isNotEmpty>
+			<isNotEmpty property="professor_name">
+				professor_name like '%' || #professor_name# || '%'
+			</isNotEmpty>
+			<isNotEmpty property="credit">
+				credit = #credit#
+			</isNotEmpty>
+		</dynamic>
+		ORDER BY subject_code
+	</select>
+	
+	<select id="selectSearchResultCount" parameterClass="map" resultClass="int">
+		SELECT 	count(subject_code)
+		FROM	course
+		<dynamic prepend="WHERE">
+			<isNotEmpty property="subject_code">
+				subject_code like '%' || #subject_code# || '%'
+			</isNotEmpty>
+			<isNotEmpty property="subject_name">
+				subject_name like '%' || #subject_name# || '%'
+			</isNotEmpty>
+			<isNotEmpty property="major_name">
+				major_name like '%' || #major_name# || '%'
+			</isNotEmpty>
+			<isNotEmpty property="professor_name">
+				professor_name like '%' || #professor_name# || '%'
+			</isNotEmpty>
+			<isNotEmpty property="credit">
+				credit = #credit#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+</sqlMap>
