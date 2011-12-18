@@ -17,6 +17,13 @@
 			return false;
 		}
 	}
+	
+	// 과목 리스트 재조회
+	function refreshList() {
+		var form = document.searchForm;
+		form.action = "/ProjectAcademy/AdminFindCourseController?page=" + ${requestScope.paging.currentPage};
+		form.submit();
+	}
 </script>
 <title>Insert title here</title>
 </head>
@@ -56,7 +63,9 @@
 	<tr height="15" valign="middle">
 		<!-- 게시물 뿌려짐 -->
 		<td align="center" bgcolor="ffbbbb">${cdto.majorName}</td>
-		<td align="center" bgcolor="ffd9bb">${cdto.subjectName}</td>
+		<td align="center" bgcolor="ffd9bb">
+			<a href="#" onclick="window.open('/ProjectAcademy/AdminGetCourseDetailController?subject_code=${cdto.subjectCode }&page=${requestScope.paging.currentPage }', '_blank', 'width=1000, height=400')">${cdto.subjectName}</a>
+		</td>
 		<td align="center" bgcolor="fffebb">${cdto.professorName}</td>
 		<td align="center" bgcolor="c1f9bb"><font color="19067c">${cdto.applicant}</font> / <font color="ad0c0c">${cdto.capacity}</font></td>
 		<td align="center" bgcolor="c8d9f9">${cdto.lectureTime}</td>

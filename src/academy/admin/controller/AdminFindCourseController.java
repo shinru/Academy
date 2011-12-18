@@ -69,9 +69,9 @@ public class AdminFindCourseController extends HttpServlet {
 			request.setAttribute("list", list);
 			request.setAttribute("paging", pdto);
 			url = "/admin/admin_list_view.jsp";
-		} catch(SQLException e) {
+		} catch(Exception e) {
 			e.printStackTrace();
-			request.setAttribute("error_message", "검색 도중 오류 발생");
+			request.setAttribute("error_message", "검색 도중 오류 발생" + e.getMessage());
 			url = "/common/error.jsp";
 		}
 		

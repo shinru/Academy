@@ -49,7 +49,7 @@ public class AdminDeleteCourseController extends HttpServlet {
 			
 			// 성공
 			url = "/AdminGetCourseListController?page=" + request.getParameter("page");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("error_message", "삭제오류발생"+e.getMessage());
 			url = "/common/error.jsp";
