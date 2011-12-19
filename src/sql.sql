@@ -12,3 +12,5 @@ create table course(
 select * from course
 drop table course
 purge recyclebin
+
+insert into course values('AAAA', '돈 버는 법', '경영학', '김선달', '1주일만 하면 10억 번다.', 0, 100, '월 09:00 ~ 10:00', 2);

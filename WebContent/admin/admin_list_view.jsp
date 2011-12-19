@@ -18,6 +18,11 @@
 		}
 	}
 	
+	// 과목 정보 입력폼 팝업
+	function popupInputForm(url) {
+		window.open(url, '', 'height=300,width=400,scrollbars=yes');
+	}
+	
 	// 과목 리스트 재조회
 	function refreshList() {
 		var form = document.searchForm;
@@ -28,7 +33,7 @@
 <title>Insert title here</title>
 </head>
 <body bgcolor="">
-<form name="searchForm" method="post" action="/ProjectAcademy/AdminFindCourseController" onSubmit="return checkSearchForm()">
+<form name="searchForm" method="post" action= onSubmit="return checkSearchForm()">
 	<table border="2" width="1000" cellpadding="1" cellspacing="1" bordercolor="gray">
 		<tr bgcolor="8bbafa">
 			<td align="right">
@@ -77,7 +82,7 @@
 	<td colspan="7"></td>
 	</tr>
 </table>
-<form action="/ProjectAcademy/admin_input_form.jsp">
+<form onSubmit="return popupInputForm('/ProjectAcademy/admin/admin_input_form.jsp')">
 	<table>
 		<tr>
 			<td width="450" align="left">

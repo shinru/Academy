@@ -49,4 +49,14 @@
     <servlet-name>AdminGetCourseDetailController</servlet-name>
     <url-pattern>/AdminGetCourseDetailController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminAddCourseController</display-name>
+    <servlet-name>AdminAddCourseController</servlet-name>
+    <servlet-class>academy.admin.controller.AdminAddCourseController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAddCourseController</servlet-name>
+    <url-pattern>/AdminAddCourseController</url-pattern>
+  </servlet-mapping>
 </web-app>
