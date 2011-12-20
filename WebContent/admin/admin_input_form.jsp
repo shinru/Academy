@@ -54,7 +54,7 @@
 </script>
 <title>Insert title here</title>
 </head>
-<body>
+<body bgcolor="" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <form name="registform" action="/ProjectAcademy/AdminAddCourseController" method="post"  onsubmit="return checkform()">
 <table border="1" width="300">
 	<tr>

@@ -28,7 +28,7 @@
 	}
 </script>
 </head>
-<body>
+<body bgcolor="" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <form name="btnForm" method="post">
 	<table border="1" cellspacing="-2" bordercolor="6b6868" cellpadding="3">
 		<tr height="20">

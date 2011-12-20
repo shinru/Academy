@@ -32,8 +32,8 @@
 </script>
 <title>Insert title here</title>
 </head>
-<body bgcolor="">
-<form name="searchForm" method="post" action= onSubmit="return checkSearchForm()">
+<body bgcolor="" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<form name="searchForm" method="post" action="/ProjectAcademy/AdminFindCourseController" onSubmit="return checkSearchForm()">
 	<table border="2" width="1000" cellpadding="1" cellspacing="1" bordercolor="gray">
 		<tr bgcolor="8bbafa">
 			<td align="right">
